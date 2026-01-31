@@ -8,7 +8,7 @@ use crate::database::Database;
 pub mod unit;
 
 #[derive(Serialize, Deserialize, Debug)]
-struct Ledger {
+pub struct Ledger {
     pub database: Database,
 }
 

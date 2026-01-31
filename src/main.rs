@@ -4,5 +4,6 @@ use ledger::database;
 
 fn main() {
     let db = database::Database::new("my-database.duckdb");
-    println!("{}", db.name)
+    let l = ledger::Ledger::new(db);
+    println!("Using database {}", l.database.name);
 }
