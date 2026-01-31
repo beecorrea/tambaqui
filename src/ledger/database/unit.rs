@@ -3,7 +3,8 @@ mod test {
 
     #[test]
     fn new() {
-        let db = database::Database::new("my-database.duckdb");
+        let db_name = "my-database.duckdb";
+        let db = database::Database::new(db_name);
         assert_eq!(db.name, "my-database.duckdb")
     }
 }
