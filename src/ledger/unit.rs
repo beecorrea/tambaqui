@@ -2,6 +2,7 @@ mod test {
     use crate::database;
     use crate::ledger;
 
+    #[test]
     fn new() {
         let db_name = "my-database.duckdb";
         let db = database::Database::new(db_name);
