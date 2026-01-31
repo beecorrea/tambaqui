@@ -1,19 +1,22 @@
 pub mod database;
 
-use serde::{Deserialize, Serialize};
-
 use crate::database::Database;
+use saphyr::{LoadableYamlNode, Yaml};
 
 #[cfg(test)]
 pub mod unit;
 
-#[derive(Serialize, Deserialize, Debug)]
 pub struct Ledger {
     pub database: Database,
 }
 
 impl Ledger {
-    pub fn new(database: Database) -> Self {
-        Ledger { database: database }
+    pub fn new(ledger: &str) -> Self {
+        let y = Yaml::load_from_str(&ledger).unwrap();
+        let db = &y[0];
+        let db_name = db["database"]["name"].as_str().unwrap();
+        Ledger {
+            database: Database::new(db_name),
+        }
     }
 }

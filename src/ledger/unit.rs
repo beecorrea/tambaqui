@@ -1,13 +1,15 @@
 mod test {
-    use crate::database;
     use crate::ledger;
 
     #[test]
     fn new() {
-        let db_name = "my-database.duckdb";
-        let db = database::Database::new(db_name);
+        let serialized = "
+database:
+    name: my-database
+";
 
-        let l = ledger::Ledger::new(db);
-        assert_eq!(l.database.name, db_name)
+        let l = ledger::Ledger::new(&serialized);
+
+        assert_eq!(l.database.name, "my-database.duckdb")
     }
 }
